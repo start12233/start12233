@@ -64,7 +64,7 @@ export const pages = createPageRoutes([
     meta: {
       navigationBarTitleText: '重置密码',
     },
-    component: () => import('@/views/user-register/index.vue'),
+    component: () => import('@/views/user-reset/index.vue'),
   },
   {
     path: `/${RoutePath.USER_REGISTER}`,
