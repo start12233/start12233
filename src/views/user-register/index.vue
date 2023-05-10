@@ -7,40 +7,6 @@ const code = ref<String>();
 
 const password = ref<String>();
 
-const identifyCodeTime = ref(60);
-
-let identifyFlag = true;
-
-/**
- * 发送验证码
- */
-function sendCode() {
-  const regPhone = /^1[3456789]\d{9}$/;
-  if (!phone.value) return;
-  console.log(22222);
-  const result = regPhone.test(phone.value.toString());
-  console.log(result);
-  console.log(identifyFlag);
-  if (!result || !identifyFlag) return;
-  console.log(999);
-  identifyFlag = false;
-  const timer = window.setInterval(() => {
-    identifyCodeTime.value--;
-    if (identifyCodeTime.value === 0) {
-      identifyFlag = true;
-      identifyCodeTime.value = 60;
-      clearInterval(timer);
-    }
-  }, 1000);
-}
-
-/**
- * 密码可见/不可见切换
- */
-function changeIsView() {
-
-}
-
 </script>
 
 <template>
@@ -60,7 +26,7 @@ function changeIsView() {
         placeholder="输入验证码"
         class="input"
       >
-      <button @click="sendCode">
+      <button>
         发送验证码
       </button>
     </div>
@@ -70,11 +36,11 @@ function changeIsView() {
     <div class="input-password input-code">
       <input
         v-model.lazy.trim="password"
-        type="password"
+        type="text"
         placeholder="输入密码"
         class="input"
       >
-      <button @click="changeIsView">
+      <button>
         眼睛
       </button>
     </div>
@@ -103,6 +69,7 @@ font-family: 'PingFang SC';
  color: rgba(0, 0, 0, 0.4);
  border: none ;
   padding-bottom: 16rem;
+  color: #000;
  }
  input:focus {
   outline: none;
