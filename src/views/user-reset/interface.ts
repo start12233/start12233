@@ -15,6 +15,7 @@ interface InputNode {
   class: string;
   type: string;
   placeholder: string;
+  change: () => void;
 }
 
 interface ButtonNode {
