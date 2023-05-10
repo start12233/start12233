@@ -6,6 +6,26 @@ const phone = ref<String>();
 const code = ref<String>();
 
 const password = ref<String>();
+const identifyCodeTime = ref(60);
+let indentifyFlag = true;
+
+/**
+ * 发送验证码
+ */
+function sendCode() {
+  const regPhone = /^1[3456789]\d{9}$/;
+  if (!phone.value) return;
+  const result = regPhone.test(phone.value?.toString());
+  if (!result || !indentifyFlag) return;
+  const timer = window.setInterval(() => {
+    identifyCodeTime.value--;
+    if (identifyCodeTime.value === 0) {
+      indentifyFlag = true;
+      identifyCodeTime.value = 60;
+      clearInterval(timer);
+    }
+  }, 1000);
+}
 
 </script>
 
@@ -24,10 +44,20 @@ const password = ref<String>();
         v-model.lazy.trim="code"
         type="text"
         placeholder="输入验证码"
+        maxlength="10"
         class="input"
       >
-      <button>
+      <button
+        v-if="identifyCodeTime===60"
+        @click="sendCode"
+      >
         发送验证码
+      </button>
+      <button
+        v-else
+        disabled
+      >
+        {{ identifyCodeTime }}s后重新发送
       </button>
     </div>
     <p class="tip-word">
