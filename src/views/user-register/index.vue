@@ -10,7 +10,7 @@ const password = ref<String>();
 </script>
 
 <template>
-  <div class="register-cotainer">
+  <form class="register-cotainer">
     <input
       v-model.trim.lazy="phone"
       type="text"
@@ -37,9 +37,10 @@ const password = ref<String>();
     <div class="input-password input-code">
       <input
         v-model.lazy.trim="password"
-        type="text"
+        type="password"
         placeholder="输入密码"
         class="input"
+        autocomplete
       >
       <button>
         眼睛
@@ -51,24 +52,24 @@ const password = ref<String>();
     <div class="agree-agreement">
       <input type="checkbox">我已阅读并同意《注册协议》
     </div>
-  </div>
+  </form>
 </template>
 
 <style scoped lang="scss">
 .register-cotainer{
- display: flex;
- flex-direction: column;
- margin-top: 200rem;
- padding: 0 50rem;
- width: 100%;
- box-sizing: border-box;
-font-family: 'PingFang SC';
+  display: flex;
+  flex-direction: column;
+  margin-top: 200rem;
+  padding: 0 50rem;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'PingFang SC';
  .input{
- font-style: normal;
- font-size: 34rem;
- line-height: 50rem;
- color: rgba(0, 0, 0, 0.4);
- border: none ;
+  font-style: normal;
+  font-size: 34rem;
+  line-height: 50rem;
+  color: rgba(0, 0, 0, 0.4);
+  border: none ;
   padding-bottom: 16rem;
   color: #000;
  }
@@ -76,18 +77,18 @@ font-family: 'PingFang SC';
   outline: none;
 }
  .input-phone{
- border-bottom: 1rem solid #000;
+  border-bottom: 1rem solid #000;
  }
  .input-code{
   display: flex;
-margin: 48rem 0 0;
+  margin: 48rem 0 0;
 
 border-bottom: 1rem solid #000;
 input{
  flex:1
  }
   button{
-   border: none;
+  border: none;
   background: none ;
   }
  }
@@ -113,12 +114,12 @@ input{
  .agree-agreement{
   text-align: center;
   margin-top: 36rem;
-   font-size: 22rem;
-   line-height: 48rem;
+  font-size: 22rem;
+  line-height: 48rem;
   input[type='checkbox']{
-            width:32rem;
-            height:32rem;
-            vertical-align:middle;
+  width:32rem;
+  height:32rem;
+  vertical-align:middle;
         }
  }
 
