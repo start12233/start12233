@@ -19,6 +19,7 @@
                 :class="item.input.class"
                 :type="item.input.type"
                 :placeholder="item.input.placeholder"
+                @change="item.input.change"
               >
               <div
                 v-if="item.button.hasButton"
@@ -42,12 +43,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, watch, reactive } from 'vue';
-import type { PageStructure } from './interface';
+import { ref } from 'vue';
+import type { DocumentNode } from './interface';
 
 // const codeRegex = /^[0-9a-zA-Z]{4}$/;
-const pageStructure = reactive<PageStructure>({
-  code: {
+const pageStructure = ref<DocumentNode[]>([
+  {
     id: 'code',
     class: 'input-item',
     data: '',
@@ -55,6 +56,7 @@ const pageStructure = reactive<PageStructure>({
       class: 'reset-input',
       type: 'text',
       placeholder: '请输入验证码',
+      change: codeRegexCheck,
     },
     button: {
       hasButton: true,
@@ -66,7 +68,7 @@ const pageStructure = reactive<PageStructure>({
       text: '',
     },
   },
-  newPwd: {
+  {
     id: 'newPwd',
     class: 'input-item',
     data: '',
@@ -74,6 +76,7 @@ const pageStructure = reactive<PageStructure>({
       class: 'reset-input',
       type: 'password',
       placeholder: '请输入新密码',
+      change: pwdCompare,
     },
     button: {
       hasButton: false,
@@ -85,7 +88,7 @@ const pageStructure = reactive<PageStructure>({
       text: '',
     },
   },
-  surePwd: {
+  {
     id: 'surePwd',
     class: 'input-item',
     data: '',
@@ -93,6 +96,7 @@ const pageStructure = reactive<PageStructure>({
       class: 'reset-input',
       type: 'password',
       placeholder: '请确认新密码',
+      change: pwdCompare,
     },
     button: {
       hasButton: false,
@@ -104,7 +108,7 @@ const pageStructure = reactive<PageStructure>({
       text: '',
     },
   },
-  submitInput: {
+  {
     id: 'submitInput',
     class: 'btn',
     data: '继续',
@@ -112,6 +116,7 @@ const pageStructure = reactive<PageStructure>({
       class: 'submit-btn',
       type: 'submit',
       placeholder: '',
+      change: () => {},
     },
     button: {
       hasButton: false,
@@ -123,49 +128,29 @@ const pageStructure = reactive<PageStructure>({
       text: '',
     },
   },
-});
+]);
 
-function codeRegexCheck(data: string) {
-  console.log(data);
+function codeRegexCheck() {
+  console.log('验证码校验');
 }
 
 function sendCode() {
   console.log('发送验证码');
 }
 
-/**
- * 新密码与确认密码匹配
- * @param data 密码数据
- * @param key 属于哪种密码
- */
-function pwdCompare(data: string, key: string) {
-  if (pageStructure.newPwd.data !== data) {
-    pageStructure[key].tip.showTip = true;
-    pageStructure[key].tip.text = '确认密码与新密码不一致';
-  } else {
-    pageStructure[key].tip.showTip = false;
-    pageStructure[key].tip.text = '';
+function pwdCompare() {
+  if (pageStructure.value[1].data !== pageStructure.value[2].data) {
+    pageStructure.value[2].tip.showTip = true;
+    pageStructure.value[2].tip.text = '确认密码与新密码不一致';
+    return true;
   }
+  pageStructure.value[2].tip.showTip = false;
+  pageStructure.value[2].tip.text = '';
 }
 
 function submitForm() {
   console.log();
 }
-
-onMounted(() => {
-  for (const key in pageStructure) {
-    watch(
-      () => pageStructure[key].data,
-      (data) => {
-        if (pageStructure[key].id === 'code') {
-          codeRegexCheck(data);
-        } else if (key === 'surePwd') {
-          pwdCompare(data, key);
-        }
-      },
-    );
-  }
-});
 </script>
 
 <style scoped lang="scss">
@@ -174,6 +159,7 @@ onMounted(() => {
   height: 100%;
   top: 207.5rem;
   padding: 0 50rem;
+  box-sizing: border-box;
   .container {
     .area {
       display: flex;
@@ -210,8 +196,8 @@ onMounted(() => {
 .btn {
   width: 650rem;
   height: 88rem;
-  padding: 20rem 64rem 20rem 64rem;
   border-radius: 44rem;
+  box-sizing: border-box;
   overflow: hidden;
 }
 .submit-btn {
