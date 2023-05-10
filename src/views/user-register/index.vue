@@ -60,7 +60,9 @@ function changeIsView() {
         placeholder="输入验证码"
         class="input"
       >
-      <button @click="sendCode" />
+      <button @click="sendCode">
+        发送验证码
+      </button>
     </div>
     <p class="tip-word">
       验证码已发送到您的手机{{ phone }}
