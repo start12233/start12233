@@ -7,16 +7,31 @@ const code = ref<String>();
 
 const password = ref<String>();
 
+let ViewFlag = 0;
+
+function changeIsView() {
+  const psw = document.getElementById('psw') as HTMLInputElement;
+  const tipSee = document.getElementById('tipSee') as HTMLButtonElement;
+  if (ViewFlag === 0) {
+    psw.type = 'text';
+    ViewFlag = 1;
+    tipSee.innerHTML = '闭眼';
+  } else {
+    psw.type = 'password';
+    ViewFlag = 0;
+    tipSee.innerHTML = '睁眼';
+  }
+}
+
 </script>
 
 <template>
   <form class="register-cotainer">
     <input
-      v-model.trim.lazy="phone"
-      type="text"
+      v-model.lazy="phone"
+      type="number"
       placeholder="输入手机号"
       class="input-phone input"
-      oninput="value=value.replace(/[^\d]/g,'')"
     >
 
     <div class="input-code">
@@ -36,14 +51,18 @@ const password = ref<String>();
     </p>
     <div class="input-password input-code">
       <input
+        id="psw"
         v-model.lazy.trim="password"
         type="password"
         placeholder="输入密码"
         class="input"
         autocomplete
       >
-      <button>
-        眼睛
+      <button
+        id="tipSee"
+        @click="changeIsView"
+      >
+        睁眼
       </button>
     </div>
     <button class="success-button">
@@ -65,12 +84,12 @@ const password = ref<String>();
   box-sizing: border-box;
   font-family: 'PingFang SC';
  .input{
+  padding-bottom: 16rem;
   font-style: normal;
   font-size: 34rem;
   line-height: 50rem;
   color: rgba(0, 0, 0, 0.4);
   border: none ;
-  padding-bottom: 16rem;
   color: #000;
  }
  input:focus {
