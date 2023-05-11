@@ -10,6 +10,9 @@ dependencies:
   '@applet-request/shared':
     specifier: ^0.1.10
     version: 0.1.10
+  axios:
+    specifier: ^1.4.0
+    version: 1.4.0
   pinia:
     specifier: ^2.0.35
     version: 2.0.35(typescript@5.0.4)(vue@3.2.47)
