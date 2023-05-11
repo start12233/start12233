@@ -35,16 +35,13 @@ const password = ref<String>();
     </p>
     <div class="input-password input-code">
       <input
-        id="psw"
         v-model.lazy.trim="password"
         type="password"
         placeholder="输入密码"
         class="input"
         autocomplete
       >
-      <button
-        id="tipSee"
-      >
+      <button>
         睁眼
       </button>
     </div>
