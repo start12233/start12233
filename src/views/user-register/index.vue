@@ -7,22 +7,6 @@ const code = ref<String>();
 
 const password = ref<String>();
 
-let ViewFlag = 0;
-
-function changeIsView() {
-  const psw = document.getElementById('psw') as HTMLInputElement;
-  const tipSee = document.getElementById('tipSee') as HTMLButtonElement;
-  if (ViewFlag === 0) {
-    psw.type = 'text';
-    ViewFlag = 1;
-    tipSee.innerHTML = '闭眼';
-  } else {
-    psw.type = 'password';
-    ViewFlag = 0;
-    tipSee.innerHTML = '睁眼';
-  }
-}
-
 </script>
 
 <template>
@@ -60,7 +44,6 @@ function changeIsView() {
       >
       <button
         id="tipSee"
-        @click="changeIsView"
       >
         睁眼
       </button>
