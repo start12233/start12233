@@ -154,12 +154,6 @@
 
 <style scoped lang="scss">
 
-@mixin flex-box-order1 {
-  flex: none;
-  flex-grow: 0;
-  order: 1;
-}
-
 @mixin flex-box {
   flex: none;
   flex-grow: 0;
@@ -237,7 +231,7 @@
     family: 'PingFang SC',serif;
     style: normal;
     weight: 600;
-    size: 20rem;
+    size: 18rem;
   };
   line-height: 24rem;
   /* identical to box height, or 120% */
@@ -260,11 +254,9 @@
   width: 104rem;
   height: 42rem;
   font: {
-    family: 'PingFang SC',serif;
-    style: normal;
-    weight: 400;
     size: 26rem;
   }
+  @extend .main-font-usage;
   line-height: 42rem;
   /* identical to box height, or 162% */
   /* token/text/auxiliary 40% */
@@ -289,11 +281,9 @@
 
   /* cn/caption2-reg */
   font:{
-    family: 'PingFang SC',serif;
-    style: normal;
-    weight: 400;
     size: 20rem;
   }
+  @extend .main-font-usage;
   line-height: 24rem;
   /* identical to box height, or 120% */
   text-align: center;
@@ -301,6 +291,7 @@
   border: 4rem solid;
   color: #000000;
   margin-top: -9em;
+  white-space: nowrap;
 }
 
 .user-info-list {
@@ -330,11 +321,9 @@
   width: 48rem;
   height: 40rem;
   font: {
-    family: 'PingFang SC',serif;
-    style: normal;
-    weight: 400;
     size: 24rem;
   }
+  @extend .main-font-usage;
   /* 中文/说明文字/Regular */
   line-height: 40rem;
   /* identical to box height, or 167% */
@@ -345,7 +334,8 @@
   color: rgba(0, 0, 0, 0.4);
 
   /* Inside auto layout */
-@include flex-box-order1;
+@include flex-box;
+  @extend .order1
 }
 
 .user-followers-text {
@@ -359,6 +349,7 @@
     weight: 400;
     size: 24rem;
   }
+  @extend .main-font-usage;
   /* 中文/说明文字/Regular */
   line-height: 40rem;
   /* identical to box height, or 167% */
@@ -370,7 +361,8 @@
   color: rgba(0, 0, 0, 0.4);
 
   /* Inside auto layout */
-@include flex-box-order1;
+@include flex-box;
+  @extend .order1
 
 }
 
@@ -430,11 +422,9 @@
 
   /* 中文/说明文字/Regular */
   font: {
-    family: 'PingFang SC',serif;
-    style: normal;
-    weight: 400;
     size: 24rem;
   }
+  @extend .main-font-usage;
   /* identical to box height, or 167% */
   display: flex;
   align-items: center;
@@ -444,7 +434,8 @@
   color: rgba(0, 0, 0, 0.4);
 
   /* Inside auto layout */
-  @include flex-box-order1;
+  @include flex-box;
+  @extend .order1
 }
 
 .menu-list-activity {
@@ -472,4 +463,15 @@
   font-size: 24rem;
 }
 
+.main-font-usage {
+  font: {
+  family: 'PingFang SC',serif;
+  style: normal;
+  weight: 400;
+}
+}
+
+.order1 {
+  order: 1;
+}
 </style>
