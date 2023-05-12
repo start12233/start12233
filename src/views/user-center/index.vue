@@ -154,6 +154,17 @@
 
 <style scoped lang="scss">
 
+@mixin flex-box-order1 {
+  flex: none;
+  flex-grow: 0;
+  order: 1;
+}
+
+@mixin flex-box {
+  flex: none;
+  flex-grow: 0;
+}
+
 .container{
   display: flex;
   width: 100%;
@@ -174,11 +185,15 @@
   width: 128rem;
   height: 128rem;
   border-radius: 50%;
-  background-color: #ccc;
-  margin-left: 10em;
-  margin-top: 30rem;
-  background-size: cover;
-  background-position: center;
+  margin: {
+    left: 10rem;
+    top: 30rem;
+  };
+  background: {
+    color: #ccc;
+    size:cover;
+    position: center;
+  };
 }
 
 .username {
@@ -187,10 +202,12 @@
   width: 160rem;
   height: 56rem;
   min-width: 160rem;
-  font-family: 'PingFang SC',serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 40rem;
+  font:{
+    family: 'PingFang SC',serif;
+    style: normal;
+    weight: 500;
+    size: 40rem;
+  }
   line-height: 56rem;
   /* identical to box height, or 140% */
 
@@ -200,11 +217,12 @@
   /* Inside auto layout */
   float: left;
   position: relative;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  margin-top: -3em;
-  margin-left: 4em;
+
+  @include flex-box;
+  margin: {
+    top:-120rem;
+    left: 170rem;
+  }
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -215,24 +233,23 @@
   height: 24rem;
 
   /* cn/caption2-sem */
-  font-family: 'PingFang SC',serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20rem;
+  font: {
+    family: 'PingFang SC',serif;
+    style: normal;
+    weight: 600;
+    size: 20rem;
+  };
   line-height: 24rem;
   /* identical to box height, or 120% */
-
   /* token/state/alert */
   color: #FFA338;
-
   /* Inside auto layout */
   position: absolute;
   left: calc(100% + 10rem);
   top: 50%; /* 垂直居中对齐 */
   transform: translateY(-50%);
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+
+@include flex-box;
   border-radius: 4rem;
   border: 2rem solid #FFA338;
   padding: 4rem;
@@ -240,26 +257,25 @@
 
 .self-written {
   /* 个性签名 */
-
   width: 104rem;
   height: 42rem;
-
-  font-family: 'PingFang SC',serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 26rem;
+  font: {
+    family: 'PingFang SC',serif;
+    style: normal;
+    weight: 400;
+    size: 26rem;
+  }
   line-height: 42rem;
   /* identical to box height, or 162% */
-
   /* token/text/auxiliary 40% */
   color: rgba(0, 0, 0, 0.4);
-
   /* Inside auto layout */
-  flex: none;
+  @include flex-box;
   order: 1;
-  flex-grow: 0;
-  margin-left: 6.5em;
-  margin-top: -2em;
+  margin: {
+    left:170rem;
+    top: -50rem;
+  };
 }
 
 .user-edit-box {
@@ -272,10 +288,12 @@
   top: 236rem;
 
   /* cn/caption2-reg */
-  font-family: 'PingFang SC',serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20rem;
+  font:{
+    family: 'PingFang SC',serif;
+    style: normal;
+    weight: 400;
+    size: 20rem;
+  }
   line-height: 24rem;
   /* identical to box height, or 120% */
   text-align: center;
@@ -283,63 +301,12 @@
   border: 4rem solid;
   color: #000000;
   margin-top: -9em;
-
-}
-
-#user-info-nums {
-  /* 3921 */
-
-  width: 81rem;
-  height: 52rem;
-
-  /* 英文和数字/副标题/Regular */
-  font-family: 'Helvetica',serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 36rem;
-  line-height: 52rem;
-  /* identical to box height, or 144% */
-  display: flex;
-  align-items: center;
-  text-align: center;
-
-  /* 文字&图标色/Font Gy1 80% */
-  color: rgba(0, 0, 0, 0.8);
-
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-
-#user-info-text {
-
-  /* 中文/说明文字/Regular */
-  font-family: 'PingFang SC',serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24rem;
-  line-height: 40rem;
-  /* identical to box height, or 167% */
-  display: flex;
-  align-items: center;
-  text-align: center;
-
-  /* 文字&图标色/Font Gy3 40% */
-  color: rgba(0, 0, 0, 0.4);
-
-  /* Inside auto layout */
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-
 }
 
 .user-info-list {
-  display: flex;
   flex-wrap: wrap;
   align-content: space-around;
-  margin-top: 200em;
+  margin-top: 200rem;
 }
 
 .user-other-info-nums {
@@ -360,18 +327,17 @@
 
 .user-followed-text {
   /* 关注 */
-
   width: 48rem;
   height: 40rem;
-
+  font: {
+    family: 'PingFang SC',serif;
+    style: normal;
+    weight: 400;
+    size: 24rem;
+  }
   /* 中文/说明文字/Regular */
-  font-family: 'PingFang SC',serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24rem;
   line-height: 40rem;
   /* identical to box height, or 167% */
-  display: flex;
   align-items: center;
   text-align: center;
 
@@ -379,10 +345,7 @@
   color: rgba(0, 0, 0, 0.4);
 
   /* Inside auto layout */
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-
+@include flex-box-order1;
 }
 
 .user-followers-text {
@@ -390,12 +353,13 @@
 
   width: 48rem;
   height: 40rem;
-
+  font: {
+    family: 'PingFang SC',serif;
+    style: normal;
+    weight: 400;
+    size: 24rem;
+  }
   /* 中文/说明文字/Regular */
-  font-family: 'PingFang SC',serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24rem;
   line-height: 40rem;
   /* identical to box height, or 167% */
   display: flex;
@@ -406,9 +370,7 @@
   color: rgba(0, 0, 0, 0.4);
 
   /* Inside auto layout */
-  flex: none;
-  order: 1;
-  flex-grow: 0;
+@include flex-box-order1;
 
 }
 
@@ -418,11 +380,61 @@
   height: 40rem;
 
   /* 中文/说明文字/Regular */
-  font-family: 'PingFang SC',serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24rem;
+  font: {
+    family: 'PingFang SC',serif;
+    style: normal;
+    weight: 400;
+    size: 24rem;
+  }
   line-height: 40rem;
+  /* identical to box height, or 167% */
+
+  align-items: center;
+  text-align: center;
+
+  /* 文字&图标色/Font Gy3 40% */
+  color: rgba(0, 0, 0, 0.4);
+  /* Inside auto layout */
+  @include flex-box;
+  white-space: nowrap;
+}
+
+#user-info-nums {
+  /* 3921 */
+
+  width: 81rem;
+  height: 52rem;
+
+  /* 英文和数字/副标题/Regular */
+  font : {
+    family: 'Helvetica',serif;
+    style: normal;
+    weight: 400;
+    size: 36rem;
+  }
+
+  line-height: 52rem;
+  /* identical to box height, or 144% */
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  /* 文字&图标色/Font Gy1 80% */
+  color: rgba(0, 0, 0, 0.8);
+
+  /* Inside auto layout */
+  @include flex-box;
+}
+
+#user-info-text {
+
+  /* 中文/说明文字/Regular */
+  font: {
+    family: 'PingFang SC',serif;
+    style: normal;
+    weight: 400;
+    size: 24rem;
+  }
   /* identical to box height, or 167% */
   display: flex;
   align-items: center;
@@ -432,10 +444,7 @@
   color: rgba(0, 0, 0, 0.4);
 
   /* Inside auto layout */
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-  white-space: nowrap;
+  @include flex-box-order1;
 }
 
 .menu-list-activity {
@@ -451,9 +460,7 @@
   height: 56rem;
   background: #D9D9D9;
   /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+  @include flex-box;
 }
 
 .menu-list-text {
