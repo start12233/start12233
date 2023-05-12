@@ -14,7 +14,6 @@
     "@applet-request/adapters": "^0.1.12",
     "@applet-request/core": "^0.1.10",
     "@applet-request/shared": "^0.1.10",
-    "axios": "^1.4.0",
     "pinia": "^2.0.35",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
